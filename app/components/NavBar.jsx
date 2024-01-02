@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const NavBar = () => {
     return (
-        <nav className='bar_style container mx-auto px-4 h-full'>
+        <nav className='bar_style'>
 
             <Link href="/">
                 <Image src="/assets/icon.jpg" alt='Maleyha Icon' width="53" height="53"></Image>

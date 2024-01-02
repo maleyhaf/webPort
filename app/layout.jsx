@@ -17,7 +17,7 @@ const Layout = ( {children} ) => {
             
 
             <main className='app'>
-                <NavBar className='drop-shadow-xl' />
+                <NavBar />
                 { children }
             </main>
         </body>
