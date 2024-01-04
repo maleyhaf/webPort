@@ -16,10 +16,10 @@
   justify-content: center;
   padding: 120px 24px 160px 24px;
   pointer-events: none;
-	background-color: rgb(204 251 241);}
+	background-color: #8DC6FF;}
 
 .main:before {
-  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #22313F 100%);
   position: absolute;
   content: "";
   z-index: 2;
@@ -136,24 +136,43 @@
 }
 
 /* Nav Component */
+nav{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #34495E;
+  justify-content: space-between;
+  overflow: auto;
+}
+
 .bar_style {
-  @apply flex-between w-full mb-16 pt-3 pb-1 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8;
-  background-color: #61A6AB;
+  overflow: hidden;
+  position: fixed;
+  width: 101%;
+  height: 90px;
+  border-bottom: solid #2f4357;
+  border-width: 2px;
+  padding-top: 30px;
+  padding-right: 20px;
 }
 
 .bar_text {
-  @apply hover:text-emerald-100 font-medium flex gap-2 flex-center;
-  color: black;
-  
+  @apply hover:text-blue-300 font-medium flex gap-2 flex-center;
+  color: #E4F1FE;
 }
 
 .bar_btn {
-  @apply rounded-full border border-black py-1.5 px-5 transition-all 
-  hover:bg-stone-200 text-center text-sm font-inter flex items-center justify-center
+  @apply rounded-full border py-1.5 px-5 transition-all 
+  hover:bg-blue-300 text-center text-sm font-inter flex items-center justify-center
   gap-2 flex-center;
-  border-color: #c2d6d1;
+  border-color: #c5d7e8;
   --tw-border-opacity:1;
-  background-color: #aacec6;
+  background-color: #E4F1FE;
+}
+
+.bar_logo {
+  padding-right: 0px;
+  padding-left: 20px;
 }
 
 .dropdown {

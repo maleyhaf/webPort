@@ -8,7 +8,8 @@ const NavBar = () => {
         <nav className='bar_style'>
 
             <Link href="/">
-                <Image src="/assets/icon.jpg" alt='Maleyha Icon' width="53" height="53"></Image>
+                <Image className='bar_logo' src="/assets/icon.jpg" alt='Maleyha Icon' 
+                width="67" height="67"></Image>
             </Link>
 
             <div className='sm:flex hidden gap-3 md:gap-5'>
