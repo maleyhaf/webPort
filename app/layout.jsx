@@ -14,11 +14,14 @@ const Layout = ( {children} ) => {
                 <div className='black' />
             </div>
 
-            
-
             <main className='app'>
-                <NavBar />
-                { children }
+                <div className="nav-bar">
+                    <NavBar />
+                </div> 
+                <div className="heading left-aligned">
+                    {children}
+                </div>
+
             </main>
         </body>
     </html>

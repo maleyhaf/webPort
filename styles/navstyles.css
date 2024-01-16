@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Nav Component */
+
+.flex-center {
+    @apply flex justify-center items-center;
+}
+
+nav{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #34495E;
+    justify-content: space-between;
+    overflow: auto;
+    position: relative;
+  }
+  
+  .bar_style {
+    overflow: hidden;
+    position: fixed;
+    width: 101%;
+    height: 65px;
+    border-bottom: solid #2f4357;
+    border-top: solid #34495E;
+    border-width: 2px;
+    padding-right: 20px;
+    align-items: center;
+  }
+  
+  .bar_text {
+    @apply hover:text-blue-300 font-medium flex gap-2 flex-center;
+    color: #E4F1FE;
+    padding-top: 5px;
+  }
+  
+  .bar_btn {
+    @apply rounded-full border py-1.5 px-5 transition-all 
+    hover:bg-blue-300 text-center text-sm font-inter flex items-center justify-center
+    gap-2 flex-center;
+    border-color: #c5d7e8;
+    --tw-border-opacity:1;
+    background-color: #E4F1FE;
+  }
+  
+  .bar_logo {
+    padding-right: 0px;
+    padding-left: 20px;
+  }
