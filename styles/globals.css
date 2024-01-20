@@ -73,9 +73,8 @@
 }
 
 /* Tailwind Styles */
-
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col mx-auto w-full;
+  @apply z-10 flex justify-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
 }
 
 .black_btn {
@@ -104,7 +103,7 @@
 }
 
 .description {
-  @apply mt-5 text-lg text-zinc-600 sm:text-xl max-w-2xl;
+  @apply mt-5 text-lg text-white sm:text-xl max-w-2xl;
   text-shadow: 1px 1px 2px #bad2e9;
 }
 
@@ -163,13 +162,19 @@
 }
 
 .nav-bar {
-  position: relative;
-  width: 101%;
   height: auto;
+  right: 100px;
 }
 
 .heading {
   padding-top: 100px;
   z-index: 11;
   position: relative;
+  padding-left: 20px;
+}
+
+.home_page {
+  display: flex;
+  position: relative;
+  align-items: center;
 }

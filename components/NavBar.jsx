@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const NavBar = () => {
-    return (
+    return (    
             <nav className='bar_style'>
 
                 <Link href="/">
@@ -13,16 +13,16 @@ const NavBar = () => {
                 </Link>
 
                 <div className='sm:flex hidden gap-3 md:gap-5'>
-                    <Link href="/">
+                    <Link href="/aboutme">
                         <p className='bar_text'>About Me</p>
                     </Link>
-                    <Link href="/">
+                    <Link href="/projects">
                         <p className='bar_text'>Projects</p>
                     </Link>
-                    <Link href="/">
+                    <Link href="/education">
                         <p className='bar_text'>Education</p>
                     </Link>
-                    <Link href="/" className='bar_btn'>
+                    <Link href="/contact" className='bar_btn'>
                         <p>CONTACT ME</p>
                     </Link>
                 </div>
