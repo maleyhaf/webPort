@@ -6,7 +6,7 @@ const Home = () => (
     <div className='home_page'>
       <div>
         <h1 className='head_text'>
-          Hi! I'm Maleyha Fatima
+          Maleyha Speaking here!
         </h1>
         <p className='description'>
           A second year software engineering student
