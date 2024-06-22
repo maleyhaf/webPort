@@ -1,4 +1,5 @@
 import '@styles/globals.css';
+import { Analytics } from "@vercel/analytics/react"
 import NavBar from '@components/NavBar';
 import Image from 'next/image';
 import Link from 'next/link';
