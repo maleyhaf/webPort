@@ -11,32 +11,30 @@
 }
 
 nav{
+    @apply h-8 w-32 rounded-full;
     display: flex;
     flex-wrap: nowrap;
-    align-items: center;
-    background-color: #34495E;
+    background-color: rgba(215, 60, 190, 0.6);
     justify-content: space-between;
     position: fixed;
-    top: 0px;
-    right: 0px;
+    right: 50px;
+    width: 87%;
+    height: 30px;
+    padding-right: 0px;
+    text-align: right;
+    top: 80px;
+    align-content: flex-end;
   }
   
-  .bar_style {
-    width: 101%;
-    height: 65px;
-    border-bottom: solid #2f4357;
-    border-top: solid #34495E;
-    border-left: solid #34495E;
-    border-right: solid #34495E;
-    border-width: 2px;
-    padding-right: 20px;
-    align-items: center;
-  }
   
   .bar_text {
-    @apply hover:text-blue-300 font-medium flex gap-2 flex-center;
+    @apply hover:text-fuchsia-300 font-medium flex gap-2 flex-auto;
     color: #E4F1FE;
     padding-top: 5px;
+    word-spacing: normal;
+    letter-spacing: 2px;
+    text-align: right;
+    margin-left: 1150px;
   }
   
   .bar_btn {
@@ -47,7 +45,3 @@ nav{
     background-color: #E4F1FE;
   }
   
-  .bar_logo {
-    padding-right: 0px;
-    padding-left: 20px;
-  }

@@ -8,6 +8,10 @@
   Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
 */
 
+body {
+  font-family: 'Goldman', sans-serif;
+}
+
 .main {
   width: 100vw;
   min-height: 100vh;
@@ -16,11 +20,11 @@
   justify-content: center;
   padding: 120px 24px 160px 24px;
   pointer-events: none;
-	background-color: #8DC6FF;
+	background-color: #000000;
   }
 
 .main:before {
-  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #22313F 100%);
+  background: linear-gradient(to right, rgba(44, 30, 74, 0.7), rgba(29, 50, 99, 0.7));
   position: absolute;
   content: "";
   z-index: 2;
@@ -74,7 +78,7 @@
 
 /* Tailwind Styles */
 .app {
-  @apply z-10 flex justify-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+  @apply z-10 flex justify-center flex-col max-w-7xl px-6;
 }
 
 .black_btn {
@@ -86,8 +90,12 @@
 }
 
 .head_text {
-  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-white sm:text-6xl;
+  @apply mt-5 text-white sm:text-6xl;
   text-shadow: 2px 2px 4px #22313F;
+  top: 100px;
+  line-height: 0.7;
+  letter-spacing: 5px;
+  font-size: 100px;
 }
 
 .orange_gradient {
@@ -168,7 +176,6 @@
 }
 
 .heading {
-  padding-top: 100px;
   z-index: 11;
   position: relative;
   padding-left: 20px;
@@ -178,4 +185,17 @@
   display: flex;
   position: relative;
   align-items: center;
+  padding-top: 100px;
+  margin-left: 150px;
+}
+
+.bar_logo {
+  flex-grow: 1;
+  padding-top: 50px;
+}
+
+.main_navigation{
+  display: flex;
+  align-items: center;
+  position: relative;
 }

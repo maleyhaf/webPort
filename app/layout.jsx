@@ -1,5 +1,7 @@
 import '@styles/globals.css';
 import NavBar from '@components/NavBar';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const metadata = {
     title: "Maleyha's Portfolio",
@@ -9,6 +11,9 @@ export const metadata = {
 const Layout = ({ children }) => {
     return (
         <html lang='en'>
+            <head>
+                <link href='https://fonts.googleapis.com/css?family=Goldman' rel='stylesheet' />
+            </head>
             <body>
                 <div className='main'>
                     <div className='black' />
@@ -17,7 +22,12 @@ const Layout = ({ children }) => {
                 <main className='app'>
 
                     <div className='heading'>
-                        <NavBar />
+                        <div className='main_navigation'>
+                            <Link href="/" className='bar_logo'>
+                                <Image src="/assets/website_icon.png" alt='Website Logo' width="97" height="97" />
+                            </Link>
+                            <NavBar />
+                        </div>
                         {children}
                     </div>
                 </main>
