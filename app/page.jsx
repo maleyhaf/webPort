@@ -37,7 +37,7 @@ const Home = () => (
 
       <div id='aboutme' align='left' className='flex justify-center pl-4'>
 
-        <div>
+        <div className='hidden sm:flex'>
           <Image src="/assets/aboutme_pic.png" alt='About me Pic'
             width="3800" height="3800" />
         </div>
