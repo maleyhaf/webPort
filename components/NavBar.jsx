@@ -29,7 +29,7 @@ const NavBar = () => {
             </div>
             <nav>
 
-                <div className='hidden sm:flex'>
+                <div>
                     <Link href="/contact" className='bar_text'>
                         CONTACT ME
                     </Link>

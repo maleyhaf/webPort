@@ -7,10 +7,51 @@
 /* Nav Component */
 
 .flex-center {
-    @apply flex justify-center items-center;
+  @apply flex justify-center items-center;
 }
 
-nav{
+/* DISPLAY FOR MOBILE */
+@media screen and (max-width: 640px) {
+  nav {
+    @apply h-8 w-32 rounded-full;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: rgba(215, 60, 190, 0.6);
+    justify-content: space-between;
+    position: relative;
+    left: 255px;
+    width: 150px;
+    height: 30px;
+    padding-right: 0px;
+    text-align: right;
+    top: 20px;
+    align-content: center;
+  }
+  
+  
+  .bar_text {
+    @apply hover:text-fuchsia-300 flex gap-2 flex-auto;
+    color: #E4F1FE;
+    padding-top: 4px;
+    word-spacing: normal;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-left: 16px;
+    font-size: 14px;
+
+  }
+  
+  .bar_btn {
+    @apply h-8 w-32 rounded-full;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: rgba(215, 60, 190, 0.6);
+  }
+}
+
+/* DISPLAY FOR REGULAR */
+@media screen and (min-width: 640px) {
+  nav {
     @apply h-8 w-32 rounded-full;
     display: flex;
     flex-wrap: nowrap;
@@ -23,9 +64,8 @@ nav{
     padding-right: 0px;
     text-align: right;
     top: 80px;
-    align-content:center;
+    align-content: center;
   }
-  
   
   .bar_text {
     @apply hover:text-fuchsia-300 font-medium flex gap-2 flex-auto;
@@ -35,7 +75,7 @@ nav{
     letter-spacing: 2px;
     text-align: center;
     margin-left: 50px;
-    
+  
   }
   
   .bar_btn {
@@ -44,4 +84,6 @@ nav{
     flex-wrap: nowrap;
     background-color: rgba(215, 60, 190, 0.6);
   }
-  
+    
+}
+

@@ -35,14 +35,14 @@ const Home = () => (
       <br />
       <br />
 
-      <div id='aboutme' align='left' className='flex justify-center pl-4'>
+      <div id='aboutme' align='left'>
 
         <div className='hidden sm:flex'>
           <Image src="/assets/aboutme_pic.png" alt='About me Pic'
             width="3800" height="3800" />
         </div>
 
-        <div className='ml-20 mt-10'>
+        <div className='sm:ml-20 sm:mt-10'>
           <p className='head_sec'>
             About
           </p>
