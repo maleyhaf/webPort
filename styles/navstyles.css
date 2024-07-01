@@ -18,30 +18,30 @@ nav{
     justify-content: space-between;
     position: fixed;
     right: 50px;
-    width: 87%;
+    width: 15%;
     height: 30px;
     padding-right: 0px;
     text-align: right;
     top: 80px;
-    align-content: flex-end;
+    align-content:center;
   }
   
   
   .bar_text {
     @apply hover:text-fuchsia-300 font-medium flex gap-2 flex-auto;
     color: #E4F1FE;
-    padding-top: 5px;
+    padding-top: 3px;
     word-spacing: normal;
     letter-spacing: 2px;
-    text-align: right;
-    margin-left: 1150px;
+    text-align: center;
+    margin-left: 50px;
+    
   }
   
   .bar_btn {
-    @apply h-8 w-32 rounded-md hover:bg-blue-300 focus:outline-none 
-    focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex-center;
-    border-color: #c5d7e8;
-    --tw-border-opacity:1;
-    background-color: #E4F1FE;
+    @apply h-8 w-32 rounded-full;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: rgba(215, 60, 190, 0.6);
   }
   

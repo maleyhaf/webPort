@@ -2,7 +2,6 @@ import '@styles/globals.css';
 import { Analytics } from "@vercel/analytics/react"
 import NavBar from '@components/NavBar';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export const metadata = {
     title: "Maleyha's Portfolio",
@@ -10,6 +9,8 @@ export const metadata = {
 }
 
 const Layout = ({ children }) => {
+
+
     return (
         <html lang='en'>
             <head>
@@ -24,9 +25,7 @@ const Layout = ({ children }) => {
 
                     <div className='heading'>
                         <div className='main_navigation'>
-                            <Link href="/" className='bar_logo'>
-                                <Image src="/assets/website_icon.png" alt='Website Logo' width="97" height="97" />
-                            </Link>
+                            
                             <NavBar />
                         </div>
                         {children}
