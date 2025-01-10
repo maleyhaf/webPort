@@ -22,20 +22,18 @@ const NavBar = () => {
 
     return (
         <>
-            <div>
-                <button onClick={() => iconClick()} className='bar_logo'>
-                    <Image src="/assets/website_icon.png" alt='Website Logo' width="97" height="97" />
+            <header className="navbar">
+                {/* Left: Website Icon */}
+                <button onClick={() => iconClick()} className="bar_logo">
+                    <Image src="/assets/website_icon.png" alt="Website Logo" width={50} height={50} style={{ objectFit: 'contain' }} />
                 </button>
-            </div>
-            <nav>
 
-                <div>
-                    <Link href="/contact" className='bar_text'>
-                        CONTACT ME
-                    </Link>
-                </div>
-
-            </nav>
+                {/* Right: Navigation Buttons */}
+                <nav className="nav_links">
+                    <Link href="/contact" className="bar_btn">CONTACT ME</Link>
+                    
+                </nav>
+            </header>
         </>
     )
 }
