@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import { ThemeProvider } from "../components/ThemeProvider";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavBar";
 
 export const metadata = {
   title: "My Portfolio",
