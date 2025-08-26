@@ -1,109 +1,207 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import ProjectCard from "../components/ProjectCard";
+import projects from "../data/projects_list";
 
-const Home = () => (
-  <section className="py-16 px-6 sm:px-12">
-    <div className="home_page max-w-7xl mx-auto">
-      {/* Intro Section */}
-      <div id="intro" >
-        <h1 className="head_text">MALEYHA</h1>
-        <h1 className="head_text">FATIMA</h1>
-        <p className="description text-xl sm:text-2xl">University of Guelph</p>
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import Image from "next/image";
 
-        {/* Social Links */}
-        <div className="flex gap-6 mt-8">
+export default function Home() {
+
+  return (
+    <main className="min-h-screen">
+
+      {/* INTRO */}
+      <section className="flex flex-col items-center justify-center text-center h-screen bg-gradient-to-b from-[var(--bg)] to-[var(--accent-light)]/20">
+
+        {/* Profile picture */}
+        <div className="mb-6">
+          <Image
+            src="/assets/me_intro.png"
+            alt="Maleyha"
+            width={200}
+            height={200}
+            className="rounded-full border-4 border-[var(--accent-light)] shadow-lg object-cover"
+          />
+        </div>
+
+        {/* Heading */}
+        <h2 className="text-5xl font-extrabold mb-4">
+          Hi, I’m <span className="text-accent">Maleyha Fatima</span>
+        </h2>
+
+        {/* Subtitle */}
+        <p className="max-w-xl text-lg mb-6 opacity-80">
+          I’m a Software Engineering student passionate about building interactive and user-friendly applications.
+        </p>
+
+        {/* Social Icons */}
+        <div className="flex justify-center space-x-6 mb-6">
           <a
-            href="https://www.linkedin.com/in/maleyha-fatima-4821bb279/"
+            href="https://www.linkedin.com/in/maleyha-fatima-4821bb279"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 hover:scale-110 transition-all"
+            className="text-[var(--accent-light)] hover:text-[var(--accent)] transition text-3xl"
           >
-            <Image
-              src="/assets/linkedin_icon.png"
-              alt="LinkedIn Icon"
-              width="85"
-              height="85"
-              className="transform transition duration-300 ease-in-out hover:rotate-12"
-            />
+            <FaLinkedin />
+          </a>
+          <a
+            href="mailto:maleyhafatima@gmail.com?subject=Portfolio%20Contact&body=Hi%20Maleyha%2C%0A%0AI%20saw%20your%20portfolio%20and%20would%20like%20to%20connect."
+            className="text-[var(--accent-light)] hover:text-[var(--accent)] transition text-3xl"
+          >
+            <FaEnvelope />
           </a>
           <a
             href="https://github.com/maleyhaf"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 pt-8 hover:scale-110 transition-all"
+            className="text-[var(--accent-light)] hover:text-[var(--accent)] transition text-3xl"
           >
-            <Image
-              src="/assets/github_icon.png"
-              alt="GitHub Icon"
-              width="85"
-              height="85"
-              className="transform transition duration-300 ease-in-out hover:rotate-12"
-            />
+            <FaGithub />
           </a>
         </div>
-      </div>
 
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+        {/* Buttons */}
+        <div className="flex gap-4">
+          <a href="#projects" className="btn-primary">View My Work</a>
+        </div>
+      </section>
 
-      {/* About Me Section */}
-      <div id="aboutme" className="flex flex-col sm:flex-row items-center justify-between mb-16">
-        {/* About Me Image */}
-        <div className="sm:w-1/2 mb-8 sm:mb-0">
-          <div className="relative w-full h-96 sm:h-[500px]">
-            <Image
-              src="/assets/aboutme_pic.png"
-              alt="About Me Picture"
-              layout="fill"
-              className="rounded-lg shadow-xl"
-            />
+      {/* Projects */}
+      <section id="projects" className="px-8 py-20 bg-[var(--accent-light)]/20">
+        <h3 className="section-title">Projects</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </div>
+      </section>
+
+      {/* Skills */}
+      <section id="skills" className="px-8 py-20 text-center">
+        <h3 className="section-title animate-fadeInUp mb-12">Skills</h3>
+
+        {/* Languages & Frameworks */}
+        <div className="mb-12">
+          <h4 className="text-xl font-semibold mb-6 text-accent-light animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
+            Languages & Frameworks
+          </h4>
+          <div className="flex flex-wrap justify-center gap-6 ">
+            {[
+              { name: "Python", desc: "High-level language for general-purpose programming" },
+              { name: "C", desc: "Low-level systems programming language" },
+              { name: "Java", desc: "Object-oriented programming language" },
+              { name: "SQL", desc: "Language for relational databases" },
+              { name: "Assembly", desc: "Low-level assembly programming language" },
+              { name: "JavaScript", desc: "Programming language for web development" },
+              { name: "HTML5/CSS", desc: "Markup and styling for web pages" },
+              { name: "React", desc: "JavaScript library for building UIs" },
+              { name: "Next.js", desc: "React framework for server-side rendering" },
+            ].map((skill, index) => (
+              <span
+                key={skill.name}
+                className="skill-tag animate-fadeInUp"
+                title={skill.desc}
+                style={{ animationDelay: `${0.2 + index * 0.05}s` }}
+              >
+                {skill.name}
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* About Me Text */}
-        <div className="sm:w-1/2 pl-8 sm:mt-10">
-          <h2 className="head_sec text-3xl font-semibold mb-4">About Me</h2>
-          <p className="text-lg">
-            As a growing student heading to my third year in Software Engineering at the University of Guelph, I am
-            excited to seek opportunities for individuals who share a drive to take on new challenges, take initiative,
-            and thrive wherever their curiosity peaks most.
-          </p>
-          <p className="mt-4 text-lg">
-            My skills and expertise have developed and widened throughout my studies, and now I cannot wait to apply
-            these to the real world with roles that will help further sharpen them. I am striving to make an impact!
-          </p>
-        </div>
-      </div>
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-
-      {/* Work Experience Section */}
-      <div id="workexperiences" className="text-center mb-16">
-        <p className="head_sec text-3xl font-semibold mb-8">Work Experiences</p>
-
-        <div className='card-container pt-6'>
-          <div className="card">
-            <Image src="/assets/Cognitive_logo.jpg" alt="Card 1" className="card-image" width={250} height={600} />
-            <div className="card-body">
-              <h3 className="card-title">Work Term 1</h3>
-              <p className="card-description">With Cognitive Systems Corp., as an embedded systems research developer.</p>
-              <a href="work_term_1" className="cta-button">View More</a>
-            </div>
+        {/* Tools & Libraries */}
+        <div className="mb-12">
+          <h4 className="text-xl font-semibold mb-6 text-accent-light animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
+            Tools & Libraries
+          </h4>
+          <div className="flex flex-wrap justify-center gap-6">
+            {[
+              { name: "Git", desc: "Version control system" },
+              { name: "VS Code", desc: "Code editor" },
+              { name: "Atom", desc: "Code editor" },
+              { name: "Docker", desc: "Containerization platform" },
+              { name: "Gradle", desc: "Java build automation tool" },
+              { name: "JUnit", desc: "Java testing framework" },
+              { name: "jQuery", desc: "JavaScript library for DOM manipulation" },
+              { name: "Pandas", desc: "Python library for data manipulation" },
+              { name: "NumPy", desc: "Python library for numerical computing" },
+              { name: "Swig", desc: "Simplified wrapper for C/C++ integration" },
+            ].map((skill, index) => (
+              <span
+                key={skill.name}
+                className="skill-tag animate-fadeInUp"
+                title={skill.desc}
+                style={{ animationDelay: `${0.2 + index * 0.05}s` }}
+              >
+                {skill.name}
+              </span>
+            ))}
           </div>
-
         </div>
-      </div>
-    </div>
-  </section>
-);
 
-export default Home;
+        {/* Concepts & Systems */}
+        <div className="mb-12">
+          <h4 className="text-xl font-semibold mb-6 text-accent-light animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
+            Concepts & Systems
+          </h4>
+          <div className="flex flex-wrap justify-center gap-6">
+            {[
+              { name: "Data Structures", desc: "Organizing and manipulating data efficiently" },
+              { name: "Object-Oriented Design", desc: "Design methodology based on objects and classes" },
+              { name: "Unit Testing", desc: "Testing individual units of code" },
+              { name: "Event-Driven Programming", desc: "Programming paradigm responding to events" },
+              { name: "Operating Systems (Linux/Unix)", desc: "Operating systems knowledge" },
+            ].map((skill, index) => (
+              <span
+                key={skill.name}
+                className="skill-tag animate-fadeInUp"
+                title={skill.desc}
+                style={{ animationDelay: `${0.2 + index * 0.05}s` }}
+              >
+                {skill.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Contact */}
+      <section id="contact" className="px-8 py-20 bg-[var(--accent-light)]/20 text-center">
+        <h3 className="section-title">Contact</h3>
+        {/* Social Icons */}
+        <div className="flex justify-center space-x-6 mb-6">
+          <a
+            href="https://www.linkedin.com/in/maleyha-fatima-4821bb279"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--accent-light)] hover:text-[var(--accent)] transition text-3xl"
+          >
+            <FaLinkedin />
+          </a>
+          <a
+            href="mailto:maleyhafatima@gmail.com?subject=Portfolio%20Contact&body=Hi%20Maleyha%2C%0A%0AI%20saw%20your%20portfolio%20and%20would%20like%20to%20connect."
+            className="text-[var(--accent-light)] hover:text-[var(--accent)] transition text-3xl"
+          >
+            <FaEnvelope />
+          </a>
+          <a
+            href="https://github.com/maleyhaf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--accent-light)] hover:text-[var(--accent)] transition text-3xl"
+          >
+            <FaGithub />
+          </a>
+        </div>
+        <p className="mb-6">
+          Let’s connect! You can reach me through linkedin or email me at{" "}
+          <a href="mailto:maleyhafatima@gmail.com" className="text-accent font-semibold">
+            maleyhaf@gmail.com
+          </a>
+        </p>
+      </section>
+
+    </main>
+  );
+}

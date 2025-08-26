@@ -1,41 +1,45 @@
 "use client";
-import '@styles/navstyles.css';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
-const NavBar = () => {
-    // to handle the icon click
-    const router = useRouter();
-    const currPath = router.pathname;
+import ThemeToggle from "./ThemeToggle";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-    const iconClick = () => {
+export default function Navbar() {
+  const pathname = usePathname();
 
-        if (currPath == "/") {
-            console.log("entered")
-            router.push('/#intro');
-            console.log("pushed")
-        } else {
-            router.push('/')
-        }
-    }
+  const links = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/#projects", label: "Projects" },
+    { href: "/#skills", label: "Skills" },
+    { href: "/#contact", label: "Contact" },
+  ];
 
-    return (
-        <>
-            <header className="navbar">
-                {/* Left: Website Icon */}
-                <button onClick={() => iconClick()} className="bar_logo">
-                    <Image src="/assets/website_icon.png" alt="Website Logo" width={50} height={50} style={{ objectFit: 'contain' }} />
-                </button>
+  return (
+    <header
+      className="sticky top-0 z-50 flex justify-between items-center px-8 py-4 
+                 bg-[var(--bg)]/30 backdrop-blur-lg border-b border-[var(--accent-light)]/30 
+                 shadow-md rounded-b-lg"
+    >
+      <h1 className="text-2xl font-bold text-accent-light">Portfolio</h1>
 
-                {/* Right: Navigation Buttons */}
-                <nav className="nav_links">
-                    <Link href="/contact" className="bar_btn">CONTACT ME</Link>
-                    
-                </nav>
-            </header>
-        </>
-    )
+      <div className="flex items-center space-x-6">
+        <nav className="space-x-6">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`hover:text-accent transition ${
+                pathname === link.href ? "font-semibold text-accent underline" : ""
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <ThemeToggle />
+      </div>
+    </header>
+  );
 }
-
-export default NavBar
