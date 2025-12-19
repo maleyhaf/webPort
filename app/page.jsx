@@ -44,7 +44,7 @@ export default function Home() {
             <FaLinkedin />
           </a>
           <a
-            href="mailto:maleyhafatima@gmail.com?subject=Portfolio%20Contact&body=Hi%20Maleyha%2C%0A%0AI%20saw%20your%20portfolio%20and%20would%20like%20to%20connect."
+            href="mailto:maleyhaf@gmail.com?subject=Portfolio%20Contact&body=Hi%20Maleyha%2C%0A%0AI%20saw%20your%20portfolio%20and%20would%20like%20to%20connect."
             className="text-[var(--accent-light)] hover:text-[var(--accent)] transition text-3xl"
           >
             <FaEnvelope />
@@ -68,13 +68,19 @@ export default function Home() {
       {/* Projects */}
       <section id="projects" className="px-8 py-20 bg-[var(--accent-light)]/20">
         <h3 className="section-title">Projects</h3>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <ProjectCard key={project.title} project={project} />
-          ))}
+          {[...projects]
+            .sort(
+              (a, b) => new Date(b.date.end) - new Date(a.date.end)
+            )
+            .map((project) => (
+              <ProjectCard key={project.title} project={project} />
+            ))}
         </div>
       </section>
 
+         
       {/* Skills */}
       <section id="skills" className="px-8 py-20 text-center">
         <h3 className="section-title animate-fadeInUp mb-12">Skills</h3>
@@ -163,7 +169,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
 
 
       {/* Contact */}

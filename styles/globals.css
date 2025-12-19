@@ -24,6 +24,10 @@ html.light {
   color: var(--cream);
 }
 
+.text-accent-light {
+  color: var(--accent-light);
+}
+
 /* Apply Theme */
 body {
   background-color: var(--bg);
@@ -121,7 +125,7 @@ body {
 }
 
 .pc-skill-tag {
-  @apply px-5 py-2 rounded-lg text-sm font-medium cursor-default transition transform ;
+  @apply px-5 rounded-lg text-sm font-medium cursor-default transition transform ;
   color: var(--accent-light);
   position: relative;
 }
