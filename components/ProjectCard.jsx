@@ -30,7 +30,16 @@ export default function ProjectCard({ project }) {
    return (
       <>
          {/* Project card */}
-         <div className="bg-dark/70 text-accent-light p-6 rounded-lg border border-[var(--accent-light)] transition transform flex flex-col justify-between h-full hover:scale-105">
+         <div
+            className="
+               bg-dark/70 backdrop-blur-lg p-6 rounded-lg border border-[var(--accent-light)]
+               flex flex-col justify-between h-full
+               transition-all duration-300 ease-out
+               hover:-translate-y-2
+               hover:shadow-[0_20px_40px_rgba(214,52,132,0.3)]
+            "
+         >
+
             <div>
                <h3 className="text-2xl font-semibold mb-1">{project.title}</h3>
                <p className="text-xs text-cream/70 mb-3">{formatDateRange(project.date)}</p>
@@ -47,6 +56,27 @@ export default function ProjectCard({ project }) {
                )}
 
                <p className="text-sm mb-4">{project.shortDescription}</p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mt-1 mb-2">
+               {project.skills.slice(0, 4).map((skill) => (
+                  <span
+                     key={skill.name}
+                     className="
+                        text-xs px-1 py-1 rounded-md
+                        bg-[var(--accent-light)]/20
+                        text-cream/80 italic
+                        "
+                  >
+                     {skill.name}
+                  </span>
+               ))}
+
+               {project.skills.length > 4 && (
+                  <span className="text-xs px-1 py-1 rounded-md bg-[var(--accent-light)]/20 text-cream/80 italic">
+                  +{project.skills.length - 4}
+                  </span>
+               )}
             </div>
 
             {/* Learn More button */}

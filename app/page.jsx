@@ -1,10 +1,29 @@
+"use client";
+
 import ProjectCard from "../components/ProjectCard";
 import projects from "../data/projects_list";
 
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+
+  // scroll detection
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 10) {
+        setHasScrolled(true);
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <main className="min-h-screen">
@@ -24,14 +43,25 @@ export default function Home() {
         </div>
 
         {/* Heading */}
-        <h2 className="text-5xl font-extrabold mb-4">
+        <h2 className="text-5xl font-extrabold mb-1">
           Hi, I’m <span className="text-accent">Maleyha Fatima</span>
+          <motion.span
+            className="block text-lg mt-2 opacity-80"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          >
+            Software Engineering Student @ University of Guelph
+          </motion.span>
         </h2>
 
+
         {/* Subtitle */}
-        <p className="max-w-xl text-lg mb-6 opacity-80">
-          I’m a Software Engineering student passionate about building interactive and user-friendly applications.
-        </p>
+        <div className=" mb-10">
+          <p className=" max-w-xl mt-1 text-sm opacity-70">
+            I enjoy building things that feel solid, intuitive, and thoughtfully engineered. Currently focused on expanding my knowledge and striving to make an impact.
+          </p>
+        </div>
 
         {/* Social Icons */}
         <div className="flex justify-center space-x-6 mb-6">
@@ -63,6 +93,24 @@ export default function Home() {
         <div className="flex gap-4">
           <a href="#projects" className="btn-primary">View My Work</a>
         </div>
+
+        <motion.div
+          className="absolute bottom-8 opacity-60 pointer-events-none"
+          initial={{ opacity: 1 }}
+          animate={{
+            opacity: hasScrolled ? 0 : 1,
+            y: hasScrolled ? 20 : 0,
+          }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+        >
+          <motion.span
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+            className="text-2xl "
+          >
+            ↓
+          </motion.span>
+        </motion.div>
       </section>
 
       {/* Projects */}
@@ -71,16 +119,23 @@ export default function Home() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...projects]
-            .sort(
-              (a, b) => new Date(b.date.end) - new Date(a.date.end)
-            )
-            .map((project) => (
-              <ProjectCard key={project.title} project={project} />
+            .sort((a, b) => new Date(b.date.end) - new Date(a.date.end))
+            .map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+              >
+                <ProjectCard project={project} />
+              </motion.div>
             ))}
+
         </div>
       </section>
 
-         
+
       {/* Skills */}
       <section id="skills" className="px-8 py-20 text-center">
         <h3 className="section-title animate-fadeInUp mb-12">Skills</h3>
