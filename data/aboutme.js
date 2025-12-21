@@ -9,11 +9,6 @@ const aboutSlides = [
       text: "As a forth-year Software Engineering student, I’m especially drawn to backend development and complex systems. I enjoy breaking down complicated problems, working through edge cases, and building efficient, reliable solutions where small details can have a big impact.",
       image: "/assets/about2.jpg",
    },
-   {
-      title: "Always Learning & Growing",
-      text: "I’m always open to learning new technologies and expanding my technical skill set. The fast pace of the tech world excites me — each new language, tool, or concept feels like another step toward becoming a stronger, more adaptable developer who values growth, creativity, and collaboration.",
-      image: "/assets/about3.jpg",
-   },
 
    {
       title: "What Motivates Me",
