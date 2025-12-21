@@ -3,7 +3,7 @@ import { ThemeProvider } from "../components/ThemeProvider";
 import Navbar from "../components/NavBar";
 
 export const metadata = {
-  title: "My Portfolio",
+  title: "Maleyha's Portfolio",
 };
 
 export default function RootLayout({ children }) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -21,6 +21,73 @@ function formatDateRange(date) {
    if (!date.start) return format(date.end); // only show end date
 
    return `${format(date.start)} – ${format(date.end)}`;
+}
+
+export function SkillLine({ skills }) {
+  const containerRef = useRef(null);
+  const [visibleCount, setVisibleCount] = useState(skills.length);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const children = Array.from(container.children);
+    let firstLineTop = null;
+    let count = 0;
+
+    // We will leave space for the +N badge
+    const lastChild = children[children.length - 1];
+
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      const top = child.offsetTop;
+      if (firstLineTop === null) firstLineTop = top;
+
+      if (top === firstLineTop) {
+        count++;
+      } else {
+        break; // next line reached
+      }
+    }
+
+    // Calculate hidden count
+    let hiddenCount = skills.length - count;
+
+    // If there are hidden skills, check if +N fits
+    if (hiddenCount > 0) {
+      // Approximation: if last visible item is too close to edge, reduce count by 1
+      const lastVisible = children[count - 1];
+      const containerWidth = container.offsetWidth;
+      const lastRight = lastVisible.offsetLeft + lastVisible.offsetWidth;
+      const plusWidth = 30; // approx width of +N badge
+      if (lastRight + plusWidth > containerWidth) {
+        count = count - 1;
+      }
+    }
+
+    setVisibleCount(count);
+  }, [skills]);
+
+  const hiddenCount = skills.length - visibleCount;
+
+  return (
+    <div ref={containerRef} className="flex flex-wrap gap-2 mt-1 mb-1">
+      {skills.slice(0, visibleCount).map((skill) => (
+        <span
+          key={skill.name}
+          className="text-xs px-1 py-1 rounded-md bg-[var(--accent-light)]/20 text-cream/80 italic whitespace-nowrap"
+        >
+          {skill.name}
+        </span>
+      ))}
+
+      {hiddenCount > 0 && (
+        <span className="text-xs px-1 py-1 rounded-md bg-[var(--accent-light)]/20 text-cream/80 italic whitespace-nowrap">
+          +{hiddenCount}
+        </span>
+      )}
+    </div>
+  );
 }
 
 
@@ -58,34 +125,22 @@ export default function ProjectCard({ project }) {
                <p className="text-sm mb-4">{project.shortDescription}</p>
             </div>
 
-            <div className="flex flex-wrap gap-2 mt-1 mb-2">
-               {project.skills.slice(0, 4).map((skill) => (
-                  <span
-                     key={skill.name}
-                     className="
-                        text-xs px-1 py-1 rounded-md
-                        bg-[var(--accent-light)]/20
-                        text-cream/80 italic
-                        "
-                  >
-                     {skill.name}
-                  </span>
-               ))}
 
-               {project.skills.length > 4 && (
-                  <span className="text-xs px-1 py-1 rounded-md bg-[var(--accent-light)]/20 text-cream/80 italic">
-                  +{project.skills.length - 4}
-                  </span>
-               )}
+
+            <div>
+                  <SkillLine skills={project.skills} />
+               {/* Learn More button */}
+               <div className="flex justify-center mt-3">
+                  <button
+                     className="w-full mt-auto px-4 py-2 btn-primary transition transform"
+                     onClick={() => setIsOpen(true)}
+                  >
+                     Learn More
+                  </button>
+               </div>
+
             </div>
 
-            {/* Learn More button */}
-            <button
-               className="mt-auto px-4 py-2 btn-primary transition transform"
-               onClick={() => setIsOpen(true)}
-            >
-               Learn More
-            </button>
          </div>
 
          {/* Modal */}

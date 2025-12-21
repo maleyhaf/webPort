@@ -2,11 +2,57 @@
 
 import ProjectCard from "../components/ProjectCard";
 import projects from "../data/projects_list";
+import aboutSlides from "../data/aboutme";
 
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+
+// text for typing effect function
+
+export function TypingWithCursor({
+  text,
+  startDelay = 600,
+  charDelay = 70,
+}) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setCount(0); // reset if text changes
+
+    const start = setTimeout(() => {
+      const interval = setInterval(() => {
+        setCount((c) => {
+          if (c >= text.length) {
+            clearInterval(interval);
+            return c;
+          }
+          return c + 1;
+        });
+      }, charDelay);
+    }, startDelay);
+
+    return () => {
+      clearTimeout(start);
+    };
+  }, [text, startDelay, charDelay]);
+
+  return (
+    <span className="block text-lg mt-2 opacity-80 whitespace-nowrap">
+      {text.slice(0, count)}
+
+      {/* Cursor */}
+      <motion.span
+        className="inline-block ml-[1px]"
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ repeat: Infinity, duration: 0.9 }}
+      >
+        |
+      </motion.span>
+    </span>
+  );
+}
 
 export default function Home() {
 
@@ -24,6 +70,17 @@ export default function Home() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSlideIndex((prev) => (prev + 1) % aboutSlides.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
 
   return (
     <main className="min-h-screen">
@@ -45,14 +102,9 @@ export default function Home() {
         {/* Heading */}
         <h2 className="text-5xl font-extrabold mb-1">
           Hi, I’m <span className="text-accent">Maleyha Fatima</span>
-          <motion.span
-            className="block text-lg mt-2 opacity-80"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          >
-            Software Engineering Student @ University of Guelph
-          </motion.span>
+          <div >
+            <TypingWithCursor text="Software Engineering Student @ University of Guelph" className="flex items-center"/>
+          </div>
         </h2>
 
 
@@ -112,6 +164,42 @@ export default function Home() {
           </motion.span>
         </motion.div>
       </section>
+
+      {/* About Me */}
+      <section className="px-8 py-20 bg-[var(--bg)]">
+        <div className="max-w-8xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+          {/* LEFT: Text */}
+          <motion.div
+            key={slideIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
+            <h3 className="text-3xl font-bold mb-4 text-accent">
+              {aboutSlides[slideIndex].title}
+            </h3>
+            <p className="text-lg opacity-80 leading-relaxed">
+              {aboutSlides[slideIndex].text}
+            </p>
+          </motion.div>
+
+          {/* RIGHT: Image */}
+          <div className="relative w-full h-[320px]">
+            <motion.img
+              key={aboutSlides[slideIndex].image}
+              src={aboutSlides[slideIndex].image}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-lg"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7 }}
+            />
+          </div>
+
+        </div>
+      </section>
+
 
       {/* Projects */}
       <section id="projects" className="px-8 py-20 bg-[var(--accent-light)]/20">
