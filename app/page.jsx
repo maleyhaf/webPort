@@ -1,24 +1,29 @@
 "use client";
 
 import ProjectCard from "../components/ProjectCard";
+import SkillIcon from "../components/SkillIcon"
 import projects from "../data/projects_list";
 import aboutSlides from "../data/aboutme";
+import {useInView} from "../hooks/useInView";
 
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+
 
 // text for typing effect function
 
 export function TypingWithCursor({
   text,
+  startType,
   startDelay = 600,
   charDelay = 70,
 }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    if (!startType) return; // stop if start is false
     setCount(0); // reset if text changes
 
     const start = setTimeout(() => {
@@ -36,10 +41,10 @@ export function TypingWithCursor({
     return () => {
       clearTimeout(start);
     };
-  }, [text, startDelay, charDelay]);
+  }, [startType, text, startDelay, charDelay]);
 
   return (
-    <span className="block text-lg mt-2 opacity-80 whitespace-nowrap">
+    <span className="block text-lg opacity-80 whitespace-nowrap">
       {text.slice(0, count)}
 
       {/* Cursor */}
@@ -72,6 +77,8 @@ export default function Home() {
   }, []);
 
   const [slideIndex, setSlideIndex] = useState(0);
+  // only type when the section is in view
+  const { ref, isInView } = useInView();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -102,8 +109,8 @@ export default function Home() {
         {/* Heading */}
         <h2 className="text-5xl font-extrabold mb-1">
           Hi, I’m <span className="text-accent">Maleyha Fatima</span>
-          <div >
-            <TypingWithCursor text="Software Engineering Student @ University of Guelph" className="flex items-center"/>
+          <div className="mt-2">
+            <TypingWithCursor text="Software Engineering Student @ University of Guelph" startType={true} className="flex items-center" />
           </div>
         </h2>
 
@@ -225,92 +232,89 @@ export default function Home() {
 
 
       {/* Skills */}
-      <section id="skills" className="px-8 py-20 text-center">
-        <h3 className="section-title animate-fadeInUp mb-12">Skills</h3>
+      
+      <section id="skills" ref={ref} className="px-8 py-20">
+        <h3 className="section-title text-center animate-fadeInUp mb-12">
+          Skills
+        </h3>
 
-        {/* Languages & Frameworks */}
-        <div className="mb-12">
-          <h4 className="text-xl font-semibold mb-6 text-accent-light animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
-            Languages & Frameworks
+        {/* Terminal Container */}
+        <div className="mx-auto max-w-6xl rounded-xl bg-[#0d1117] border border-white/10 shadow-xl font-mono pb-3">
+
+          {/* Terminal Header */}
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10">
+            <span className="h-3 w-3 rounded-full bg-red-500" />
+            <span className="h-3 w-3 rounded-full bg-yellow-400" />
+            <span className="h-3 w-3 rounded-full bg-green-500" />
+            <span className="ml-4 text-sm text-white/50">
+              maleyha@portfolio:~/skills
+            </span>
+          </div>
+
+          {/* Languages & Frameworks */}
+          <h4 className="mt-4 mb-6 text-accent-light flex items-center gap-2 font-mono text-lg leading-none">
+            <span className="pl-2 text-green-400 leading-none">$</span>
+            <span className="leading-none">
+              <TypingWithCursor text={"cat languages_and_frameworks.txt"} startType={isInView} />
+            </span>
           </h4>
-          <div className="flex flex-wrap justify-center gap-6 ">
+          <div className="flex flex-wrap justify-center gap-8 px-4">
             {[
-              { name: "Python", desc: "High-level language for general-purpose programming" },
-              { name: "C", desc: "Low-level systems programming language" },
-              { name: "Java", desc: "Object-oriented programming language" },
-              { name: "SQL", desc: "Language for relational databases" },
-              { name: "Assembly", desc: "Low-level assembly programming language" },
-              { name: "JavaScript", desc: "Programming language for web development" },
-              { name: "HTML5/CSS", desc: "Markup and styling for web pages" },
-              { name: "React", desc: "JavaScript library for building UIs" },
-              { name: "Next.js", desc: "React framework for server-side rendering" },
-            ].map((skill, index) => (
-              <span
-                key={skill.name}
-                className="skill-tag animate-fadeInUp"
-                title={skill.desc}
-                style={{ animationDelay: `${0.2 + index * 0.05}s` }}
-              >
-                {skill.name}
-              </span>
+              { icon: "devicon-python-plain colored", label: "Python" },
+              { icon: "devicon-c-plain colored", label: "C" },
+              { icon: "devicon-java-plain colored", label: "Java" },
+              { icon: "devicon-javascript-plain colored", label: "JavaScript" },
+              { icon: "devicon-html5-plain colored", label: "HTML5" },
+              { icon: "devicon-css3-plain colored", label: "CSS3" },
+              { icon: "devicon-sqlite-plain colored", label: "SQLite" },
+              { icon: "devicon-dart-plain colored", label: "Dart" },
+              { icon: "devicon-json-plain colored", label: "JSON" },
+              { icon: "devicon-bash-plain colored", label: "Bash" },
+              { icon: "devicon-react-original colored", label: "React" },
+              { icon: "devicon-nextjs-original-wordmark plain", label: "Next.js" },
+              { icon: "devicon-flutter-plain colored", label: "Flutter" },
+              { icon: "devicon-flask-original plain", label: "Flask" },
+            ].map((skill, i) => (
+              <SkillIcon
+                key={skill.label}
+                icon={skill.icon}
+                label={skill.label}
+                delay={0.2 + i * 0.05}
+              />
             ))}
           </div>
-        </div>
-
-        {/* Tools & Libraries */}
-        <div className="mb-12">
-          <h4 className="text-xl font-semibold mb-6 text-accent-light animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
-            Tools & Libraries
+          {/* Tools & Libraries */}
+          <h4 className="mb-6 text-accent-light flex items-center gap-2 font-mono text-lg leading-none">
+            <span className="pl-2 text-green-400 leading-none">$</span>
+            <span className="leading-none mt-0">
+              <TypingWithCursor text={"cat tools_and_liabraries.txt"} startType={isInView}/>
+            </span>
           </h4>
-          <div className="flex flex-wrap justify-center gap-6">
+
+          <div className="flex flex-wrap justify-center gap-8 px-4">
             {[
-              { name: "Git", desc: "Version control system" },
-              { name: "VS Code", desc: "Code editor" },
-              { name: "Atom", desc: "Code editor" },
-              { name: "Docker", desc: "Containerization platform" },
-              { name: "Gradle", desc: "Java build automation tool" },
-              { name: "JUnit", desc: "Java testing framework" },
-              { name: "jQuery", desc: "JavaScript library for DOM manipulation" },
-              { name: "Pandas", desc: "Python library for data manipulation" },
-              { name: "NumPy", desc: "Python library for numerical computing" },
-              { name: "Swig", desc: "Simplified wrapper for C/C++ integration" },
-            ].map((skill, index) => (
-              <span
-                key={skill.name}
-                className="skill-tag animate-fadeInUp"
-                title={skill.desc}
-                style={{ animationDelay: `${0.2 + index * 0.05}s` }}
-              >
-                {skill.name}
-              </span>
+              { icon: "devicon-git-plain colored", label: "Git" },
+              { icon: "devicon-github-plain", label: "GitHub" },
+              { icon: "devicon-docker-plain colored", label: "Docker" },
+              { icon: "devicon-linux-plain", label: "Linux" },
+              { icon: "devicon-vscode-plain colored", label: "VS Code" },
+              { icon: "devicon-androidstudio-plain colored", label: "Android Studio" },
+              { icon: "devicon-cmake-plain colored", label: "Makefile" },
+              { icon: "devicon-gradle-plain colored", label: "Gradle" },
+              { icon: "devicon-azuredevops-plain colored", label: "Azure DevOps" },
+              { icon: "devicon-jira-plain colored", label: "Jira" },
+            ].map((skill, i) => (
+              <SkillIcon
+                key={skill.label}
+                icon={skill.icon}
+                label={skill.label}
+                delay={0.2 + i * 0.05}
+              />
             ))}
           </div>
+
         </div>
 
-        {/* Concepts & Systems */}
-        <div className="mb-12">
-          <h4 className="text-xl font-semibold mb-6 text-accent-light animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
-            Concepts & Systems
-          </h4>
-          <div className="flex flex-wrap justify-center gap-6">
-            {[
-              { name: "Data Structures", desc: "Organizing and manipulating data efficiently" },
-              { name: "Object-Oriented Design", desc: "Design methodology based on objects and classes" },
-              { name: "Unit Testing", desc: "Testing individual units of code" },
-              { name: "Event-Driven Programming", desc: "Programming paradigm responding to events" },
-              { name: "Operating Systems (Linux/Unix)", desc: "Operating systems knowledge" },
-            ].map((skill, index) => (
-              <span
-                key={skill.name}
-                className="skill-tag animate-fadeInUp"
-                title={skill.desc}
-                style={{ animationDelay: `${0.2 + index * 0.05}s` }}
-              >
-                {skill.name}
-              </span>
-            ))}
-          </div>
-        </div>
       </section>
 
 
