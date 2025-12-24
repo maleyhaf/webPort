@@ -287,7 +287,7 @@ export default function Home() {
           <h4 className="mb-6 text-accent-light flex items-center gap-2 font-mono text-lg leading-none">
             <span className="pl-2 text-green-400 leading-none">$</span>
             <span className="leading-none mt-0">
-              <TypingWithCursor text={"cat tools_and_liabraries.txt"} startType={isInView}/>
+              <TypingWithCursor text={"cat tools_and_libraries.txt"} startType={isInView}/>
             </span>
           </h4>
 
