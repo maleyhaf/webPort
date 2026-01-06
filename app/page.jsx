@@ -264,6 +264,7 @@ export default function Home() {
               { icon: "devicon-c-plain colored", label: "C" },
               { icon: "devicon-java-plain colored", label: "Java" },
               { icon: "devicon-javascript-plain colored", label: "JavaScript" },
+              { icon: "devicon-typescript-plain colored", label: "TypeScript" },
               { icon: "devicon-html5-plain colored", label: "HTML5" },
               { icon: "devicon-css3-plain colored", label: "CSS3" },
               { icon: "devicon-sqlite-plain colored", label: "SQLite" },

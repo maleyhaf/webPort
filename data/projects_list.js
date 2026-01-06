@@ -206,6 +206,58 @@ const projects = [
     link: "https://github.com/maleyhaf/multi_way_chat",
   },
 
+  {
+  title: "Interactive Terminal Portfolio",
+  date: {
+    start: "",
+    end: "2026-01",
+  },
+  shortDescription: "(In progress) Command-line–style portfolio built with Next.js and React",
+  overview:
+    "I designed and developed an interactive terminal-style portfolio to present my skills and projects in a memorable, developer-centric way. Inspired by Windows command-line interfaces, the project simulates real terminal behavior, including typed commands, animated cursors, command history, and structured outputs. The application is built as a client-side Next.js component using React hooks, with a strong focus on UI polish, accessibility, and smooth user experience. This project allowed me to combine frontend engineering with thoughtful interaction design, emphasizing state management, animation timing, and component reusability.",
+  details: [
+    "Implemented a terminal-style UI with command history and live input handling",
+    "Built a reusable typing animation component with cursor control and callbacks",
+    "Designed structured command outputs, including text responses and skill icon displays",
+    "Managed terminal state using React hooks and controlled rendering flows",
+    "Integrated Devicon icons for visual skill representation",
+    "Ensured smooth auto-scrolling and responsive layout behavior",
+  ],
+  skills: [
+    {
+      name: "Next.js",
+      description: "Client-side rendering and component-based architecture",
+    },
+    {
+      name: "React",
+      description: "State management with hooks and reusable UI components",
+    },
+    {
+      name: "TypeScript",
+      description: "Strong typing for component props, state, and command data",
+    },
+    {
+      name: "UI/UX Design",
+      description: "Terminal-inspired interaction design and animation timing",
+    },
+    {
+      name: "Frontend Animation",
+      description: "Typing effects, cursor control, and staged rendering",
+    },
+    {
+      name: "Accessibility",
+      description: "Keyboard-driven interaction and semantic HTML usage",
+    },
+    {
+      name: "CSS & Styling",
+      description: "Custom terminal styling with responsive layout considerations",
+    },
+  ],
+  image: "/assets/terminal_portfolio_preview.png",
+  linkTitle: "View Terminal Portfolio",
+  link: "https://maleyhas-portfolio.vercel.app/",
+},
+
 ];
 
 export default projects;
