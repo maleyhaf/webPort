@@ -258,6 +258,38 @@ const projects = [
   link: "https://maleyhas-portfolio.vercel.app/",
 },
 
+{
+  title: "KeepUp",
+  date: {
+    start: "",
+    end: "2025-09",
+  },
+  shortDescription: "Gamified running app with real-time pacing, audio feedback, and survival mechanics",
+  overview:
+    "KeepUp is a Flutter-based mobile running app that turns workouts into a survival-style game. Runners set a target pace and duration, then receive real-time feedback during their run. If the runner slows below their goal pace, creepy music plays to push them forward; failing to recover within a grace period causes virtual monsters to catch them, ending the run. The app combines fitness tracking with game mechanics to create a more immersive and motivating running experience, while prioritizing reliable GPS data, smooth pacing feedback, and long-term progress tracking.",
+  details: [
+    "Built a cross-platform mobile app in Flutter with real-time GPS tracking",
+    "Engineered a pace smoothing system to reduce noisy GPS readings",
+    "Implemented pace-responsive audio feedback and monster-based failure mechanics",
+    "Designed automatic pause detection and manual pause/resume controls",
+    "Developed profile, run history, settings, and session summary screens",
+    "Created emulator-based GPS route simulations to test pacing and movement logic",
+  ],
+  skills: [
+    { name: "Flutter", description: "Cross-platform mobile UI and state management" },
+    { name: "Dart", description: "Core application logic and pacing systems" },
+    { name: "GPS & Geolocation", description: "Real-time tracking with smoothing and accuracy filtering" },
+    { name: "Game Mechanics", description: "Pace-based challenges, audio feedback, and failure states" },
+    { name: "Audio Systems", description: "Dynamic looping audio triggered by runtime conditions" },
+    { name: "Local Storage", description: "Persisted run statistics and user profiles using Hive" },
+    { name: "Testing & Debugging", description: "Validated movement and pacing via simulated GPS routes" },
+    { name: "UI/UX Design", description: "Designed engaging, fitness-focused user interfaces" },
+  ],
+  image: "/assets/keepup_project.png",
+  linkTitle: "View on Github",
+  link: "https://maleyhas-portfolio.vercel.app/",
+},
+
 ];
 
 export default projects;
